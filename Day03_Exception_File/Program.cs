@@ -1,23 +1,25 @@
-﻿namespace Day03_Exception_File;
+﻿using System.Text.Json;
+
+namespace Day03_Exception_File;
 
 class Program
 {
     static void Main(string[] args)
     {
-        var numString = "10.5";
-        int num;
-        try
-        {
-            num = int.Parse(numString);
-        }
-        catch (FormatException e)
-        {
-            Console.WriteLine(e.Message);
-            Console.WriteLine("예외처리 발생");
-            
-            num = 0;
-        }
-        Console.WriteLine(num);
+        // var numString = "10.5";
+        // int num;
+        // try
+        // {
+        //     num = int.Parse(numString);
+        // }
+        // catch (FormatException e)
+        // {
+        //     Console.WriteLine(e.Message);
+        //     Console.WriteLine("예외처리 발생");
+        //     
+        //     num = 0;
+        // }
+        // Console.WriteLine(num);
 
         // // 새로 쓰기
         // File.WriteAllText("text.txt", "Hello World!");
@@ -46,5 +48,26 @@ class Program
         // {
         //     Console.WriteLine("파일이 없습니다.");
         // }
+        
+        // Hero hero = new Hero("text", 100);
+        
+        // // 직렬화
+        // string json = JsonSerializer.Serialize(hero);
+        //
+        // var option = new JsonSerializerOptions();
+        // option.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        //
+        // Hero? hero2 = JsonSerializer.Deserialize<Hero>(json);
+        // if (hero2 is null)
+        // {
+        //     Console.WriteLine("null");
+        // }
+        // Console.WriteLine(hero);
+        // Console.WriteLine(hero2);
+        // Console.WriteLine(hero.Equals(hero2));
+        
+        DefaultFileCopier copier = new DefaultFileCopier();
+        
+        copier.CopyFile(args[0], args[1]);
     }
 }
