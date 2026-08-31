@@ -1,4 +1,7 @@
 ﻿using System.Text.Json;
+using System.Text.Encodings.Web;
+
+
 
 namespace Day03_Exception_File;
 
@@ -66,8 +69,35 @@ class Program
         // Console.WriteLine(hero2);
         // Console.WriteLine(hero.Equals(hero2));
         
-        DefaultFileCopier copier = new DefaultFileCopier();
+        // // 파일 복사 연습문제
+        // DefaultFileCopier copier = new DefaultFileCopier();
+        //
+        // copier.CopyFile(args[0], args[1]);
         
-        copier.CopyFile(args[0], args[1]);
+
+        Department department = new Department("총무부", new Employee("홍길동", 41));
+
+        // 이거 안쓰면 한글 깨짐
+        var options = new JsonSerializerOptions
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            WriteIndented = true
+        };
+        
+        string json = JsonSerializer.Serialize(department, options);
+
+        File.WriteAllText("company.json", json);
+        
+        
+        string jsonText = File.ReadAllText("company.json");
+
+        Department? result = JsonSerializer.Deserialize<Department>(jsonText);
+
+        if (result != null)
+        {
+            Console.WriteLine(result.Name);
+            Console.WriteLine(result.leader.Name);
+            Console.WriteLine(result.leader.Age);
+        }
     }
 }
