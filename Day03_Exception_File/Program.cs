@@ -5,11 +5,18 @@ class Program
     static void Main(string[] args)
     {
         var numString = "10.5";
-        
-        int num = int.Parse(numString);
-        // The input string '10.5' was not in a correct format.
-        // 입력 문자열 '10.5'가 올바른 형식이 아닙니다.
-        
+        int num;
+        try
+        {
+            num = int.Parse(numString);
+        }
+        catch (FormatException e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("예외처리 발생");
+            
+            num = 0;
+        }
         Console.WriteLine(num);
 
         // // 새로 쓰기
