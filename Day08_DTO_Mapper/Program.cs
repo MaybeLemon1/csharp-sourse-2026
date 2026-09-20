@@ -1,9 +1,23 @@
-﻿namespace Day08_DTO_Mapper;
+﻿using Day08_DTO_Mapper.Data.DataSources;
+using Day08_DTO_Mapper.Data.Repositores;
 
-class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static async Task Main()
     {
-        Console.WriteLine("Hello, World!");
+        var httpClient = new HttpClient();
+
+        var dataSource =
+            new PokemonApiDataSource(httpClient);
+
+        var repository =
+            new PokemonRepository(dataSource);
+
+        var pokemon =
+            await repository.GetPokemonByNameAsync(
+                "jigglypuff"
+            );
+
+        Console.WriteLine(pokemon);
     }
 }
