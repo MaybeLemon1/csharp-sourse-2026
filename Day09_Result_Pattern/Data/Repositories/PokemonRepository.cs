@@ -6,7 +6,7 @@ using Day09_Result_Pattern.Data.Common.Errors;
 using Day09_Result_Pattern.Data.Mapper;
 using Newtonsoft.Json;
 
-namespace Day09_Result_Pattern.Data.Repositores;
+namespace Day09_Result_Pattern.Data.Repositories;
 
 public class PokemonRepository : IPokemonRepository
 {

@@ -2,11 +2,11 @@
 using Day09_Result_Pattern.Data.Common;
 using Day09_Result_Pattern.Data.Common.Errors;
 using Day09_Result_Pattern.Data.Models;
-using Day09_Result_Pattern.Data.Repositores;
+using Day09_Result_Pattern.Data.Repositories;
 
 namespace Day09_Result_Pattern_Test;
 
-public class Tests
+public class PokemonTests
 {
     [Test]
     public async Task TimeoutException이_발생하면_NetworkTimeout을_반환()
