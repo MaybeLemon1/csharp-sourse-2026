@@ -4,6 +4,7 @@ using Day09_Result_Pattern.Data.Models;
 using Day09_Result_Pattern.Data.Common;
 using Day09_Result_Pattern.Data.Common.Errors;
 using Day09_Result_Pattern.Data.Mapper;
+using Newtonsoft.Json;
 
 namespace Day09_Result_Pattern.Data.Repositores;
 
@@ -46,6 +47,18 @@ public class PokemonRepository : IPokemonRepository
                         PokemonError.Unknown
                     );
             }
+        }
+        catch (TimeoutException)
+        {
+            return new Result<Pokemon, PokemonError>.Error(
+                PokemonError.NetworkTimeout
+            );
+        }
+        catch (JsonSerializationException)
+        {
+            return new Result<Pokemon, PokemonError>.Error(
+                PokemonError.JsonSerializationError
+            );
         }
         catch (Exception e)
         {

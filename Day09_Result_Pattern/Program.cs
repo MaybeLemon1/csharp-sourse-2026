@@ -13,7 +13,7 @@ class Program
         IPokemonApiDataSource dataSource = new PokemonApiDataSource(new HttpClient());
         IPokemonRepository repository = new PokemonRepository(dataSource);
 
-        Result<Pokemon, PokemonError> result = await repository.GetPokemonByNameAsync("dittooo");
+        Result<Pokemon, PokemonError> result = await repository.GetPokemonByNameAsync("jigglypuff");
         
         switch (result)
         {
